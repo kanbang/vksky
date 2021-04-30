@@ -1,0 +1,184 @@
+
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="dns-prefetch" href="https://cdn.ventusky.com">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!-- <meta name="apple-itunes-app" content="app-id=1280984498"> -->
+    <title>Ventusky - 风雨气温图</title>
+    <link rel=stylesheet href="./static/style.css">
+    <script>
+    document.addEventListener('gesturestart', function (e) {
+    e.preventDefault();
+    });
+
+    </script>
+    <meta name="description" content="动态风雨气温图，你所在位置的详细预报，数据来自最好的气象预报应用，比如：GFS，ICON，GEM">
+    <meta name="keywords" content="weather, forecast, maps, wind, temperature, precipitation, rain, cloud, pressure, CAPE">
+    <meta name="application-name" content="Ventusky">
+    
+     
+    <link rel="canonical" href="https://www.ventusky.com" />
+    <meta property="og:title" content="Ventusky - 天气预报地图" />
+        
+    <meta property="og:image" content="https://www.ventusky.com/images/social-app.jpg">
+    		   
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@Ventuskycom">
+    <meta name="twitter:title" content="Ventusky - 风雨气温图">
+    <meta name="twitter:description" content="动态风雨气温图，你所在位置的详细预报，数据来自最好的气象预报应用，比如：GFS，ICON，GEM">
+    <meta name="twitter:image" content="https://www.ventusky.com/images/social-app.jpg">
+		
+    <link rel="shortcut icon" href="https://www.ventusky.com/images/favicon.ico">
+    <link rel="apple-touch-icon" href="https://www.ventusky.com/images/apple-touch-icon-152x152.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+</head>
+<body>
+    <br />
+    <form id="header">
+        <h1><a href="./">Ventusky: 天气预报地图</a></h1>
+        <label>
+            <input name="q" />
+        </label>
+        <ul>
+            <li class="progress"></li>
+        </ul>
+    </form>
+    <menu>
+        <li>
+            <a href="about" id="menu-about" class="button">关于</a>
+        </li>
+    </menu>
+    <div id="no-js">
+     <ul>
+     <li>温度</li>
+     <li>降水量</li>
+     <li>风</li>
+     <li>阵风</li>
+     <li>云量</li>
+     <li>气压</li>
+     <li>CAPE</li>
+     <li>积雪层</li>
+     <li>冻结高度</li>
+     </ul>
+     
+     动态风 <br />
+     GFS, ICON, GEM
+
+    </div>
+	
+	 <div id="news" data-news="news-9" style="width: 250px;">
+      <a href="https://www.ventusky.com/?l=temperature-2m&t=19800223/1200">
+	  <!-- <strong>Try Ventusky app for Android and iOS</strong> -->
+	  <strong>New: Weather Archive from 1979 based on ECMWF reanalysis!</strong>
+	  <img src="https://www.ventusky.com/images/promo/archive.png" alt="Weather Archive">        
+      </a>
+    </div>
+
+    <script>
+var MapOptions = {
+  "root": "https://www.ventusky.com/",
+  "lang": "zh",
+  "lat": 36.6683,
+  "lon": 116.9972,
+  "zoom": 5,
+  "model": "auto",
+  "now":               Date.UTC(2021, 3, 25, 10, 53),
+
+  "iconTimelineStart": Date.UTC(2017, 0, 1, 0),
+  "iconTimelineEnd":   Date.UTC(2021, 3, 28, 12),
+  "iconUpdated":       Date.UTC(2021, 3, 25, 6, 0),
+  
+  "icon-euTimelineStart": Date.UTC(2017, 10, 0, 0),
+  "icon-euTimelineEnd":   Date.UTC(2021, 3, 28, 12),
+  "icon-euUpdated":       Date.UTC(2021, 3, 25, 6, 0),  
+  
+  "icon-waterTimelineStart": Date.UTC(2017, 6, 1, 0),
+  "icon-waterTimelineEnd":   Date.UTC(2021, 4, 2, 0),
+  "icon-waterUpdated":       Date.UTC(2021, 3, 25, 0, 0),
+  
+   "icon-eu-waterTimelineStart": Date.UTC(2020, 1, 17, 0),
+  "icon-eu-waterTimelineEnd":   Date.UTC(2021, 3, 28, 6),
+  "icon-eu-waterUpdated":       Date.UTC(2021, 3, 25, 0, 0),
+
+  "gfsTimelineStart":  Date.UTC(2018, 0, 1, 0),
+  "gfsTimelineEnd":    Date.UTC(2021, 4, 4, 12),
+  "gfsUpdated":        Date.UTC(2021, 3, 25, 0, 0),
+
+  "gemTimelineStart":  Date.UTC(2021, 0, 1, 0),
+  "gemTimelineEnd":    Date.UTC(2021, 4, 4, 12),
+  "gemUpdated":        Date.UTC(2021, 3, 25, 0, 0),
+  
+  "ecmwfTimelineStart": Date.UTC(1979, 5, 1, 0),
+  "ecmwfTimelineEnd":   Date.UTC(2020, 9, 31, 21),
+  "ecmwfUpdated":       Date.UTC(2020, 9, 31, 21, 0),
+  
+  "hrrrTimelineStart":  Date.UTC(2018, 2, 9, 18),
+  "hrrrTimelineEnd":    Date.UTC(2021, 3, 27, 6),
+  "hrrrUpdated":        Date.UTC(2021, 3, 25, 9, 0),  
+  
+  "nbmTimelineStart":  Date.UTC(2021, 0, 1, 0),
+  "nbmTimelineEnd":    Date.UTC(2021, 3, 26, 20),
+  "nbmUpdated":        Date.UTC(2021, 3, 25, 9, 0),  
+  
+  "icon-deTimelineStart": Date.UTC(2021, 0, 26, 0),
+  "icon-deTimelineEnd":   Date.UTC(2021, 3, 26, 23),
+  "icon-deUpdated":       Date.UTC(2021, 3, 25, 3, 0),
+  
+  "euradTimelineStart":  Date.UTC(2019, 0, 1, 0),
+  "euradTimelineEnd":    Date.UTC(2021, 3, 25, 11),
+  "euradUpdated":        Date.UTC(2021, 3, 25, 12, 16),  
+  
+  "usradTimelineStart":  Date.UTC(2019, 0, 1, 0),
+  "usradTimelineEnd":    Date.UTC(2021, 3, 25, 11),
+  "usradUpdated":        Date.UTC(2021, 3, 25, 12, 10),
+  
+  "woradTimelineStart":  Date.UTC(2019, 0, 1, 0),
+  "woradTimelineEnd":    Date.UTC(2021, 3, 25, 10),
+  "woradUpdated":        Date.UTC(2021, 3, 25, 12, 13),  
+  
+  "silamTimelineStart": Date.UTC(2020, 1, 15, 0),
+  "silamTimelineEnd":   Date.UTC(2021, 3, 29, 0),
+  "silamUpdated":       Date.UTC(2021, 3, 25, 0, 0),
+  
+  "silam-euTimelineStart": Date.UTC(2020, 1, 15, 0),
+  "silam-euTimelineEnd":   Date.UTC(2021, 3, 29, 0),
+  "silam-euUpdated":       Date.UTC(2021, 3, 25, 3, 0),
+  
+  "goesTimelineStart":  Date.UTC(2020, 4, 1, 1),
+  "goesTimelineEnd":    Date.UTC(2021, 3, 25, 10, 40),
+  "goesUpdated":        Date.UTC(2021, 3, 25, 10, 40),
+  
+  "hurricanesUpdated":        Date.UTC(2021, 3, 25, 6, 40),    
+  
+  "gemAccumulationStart": Date.UTC(2021, 3, 25, 3),
+  "iconAccumulationStart": Date.UTC(2021, 3, 25, 6),
+  "icon-euAccumulationStart": Date.UTC(2021, 3, 25, 6),
+  "icon-deAccumulationStart": Date.UTC(2021, 3, 25, 3),
+  "hrrrAccumulationStart": Date.UTC(2021, 3, 25, 9),  
+  "nbmAccumulationStart": Date.UTC(2021, 3, 25, 9),  
+  "gfsAccumulationStart": Date.UTC(2021, 3, 25, 3)
+};
+    </script>
+
+    <!-- <script src="https://cdn.ventusky.com/static/script-zh.js?1615307400"></script> -->
+    <script src="./static/script-zh.js"></script>
+
+     
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-851063-8"></script> -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-851063-8', { 'cookie_domain': 'www.ventusky.com' });
+
+</script>
+ 
+</body>
+</html>
